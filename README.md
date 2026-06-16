@@ -1,4 +1,4 @@
-# GoLicenseWatchdog
+# Go-License-Watchdog
 
 A cryptographic license enforcement library for Go applications. Embed it in your binary — it gates all HTTP traffic behind a signed license token that you issue. When the license expires, requests get a `402`. When you send a terminate token, the binary self-destructs.
 
@@ -34,7 +34,7 @@ Zero external dependencies. Pure stdlib.
 ## Installation
 
 ```bash
-go get github.com/PEDRAMJS/GoLicenseWatchdog
+go get github.com/PEDRAMJS/Go-License-Watchdog
 ```
 
 ---
@@ -44,7 +44,7 @@ go get github.com/PEDRAMJS/GoLicenseWatchdog
 ### Step 1 — Generate your keypair (once)
 
 ```bash
-go run github.com/PEDRAMJS/GoLicenseWatchdog/cmd/keygen
+go run github.com/PEDRAMJS/Go-License-Watchdog/cmd/keygen
 ```
 
 This writes two files:
@@ -64,7 +64,7 @@ import (
     "log"
     "net/http"
 
-    watchdog "github.com/PEDRAMJS/GoLicenseWatchdog"
+    watchdog "github.com/PEDRAMJS/Go-License-Watchdog"
 )
 
 //go:embed watchdog_public.pem
@@ -252,7 +252,7 @@ The error message is always vague — which check failed is never revealed to th
 Once you have a customer's `instance_id`:
 
 ```bash
-go run github.com/PEDRAMJS/GoLicenseWatchdog/cmd/tokengen \
+go run github.com/PEDRAMJS/Go-License-Watchdog/cmd/tokengen \
     -key      watchdog_private.pem \
     -instance a3f9b2c1d4e5f607... \
     -days     7 \
@@ -284,7 +284,7 @@ Or in Postman: `POST` → body `raw / JSON` → `{"token": "eyJhbGci..."}`.
 To remotely destroy a deployment:
 
 ```bash
-go run github.com/PEDRAMJS/GoLicenseWatchdog/cmd/tokengen \
+go run github.com/PEDRAMJS/Go-License-Watchdog/cmd/tokengen \
     -key      watchdog_private.pem \
     -instance a3f9b2c1d4e5f607... \
     -action   terminate
