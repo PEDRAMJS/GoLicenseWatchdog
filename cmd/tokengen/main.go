@@ -53,6 +53,7 @@ func main() {
 	action     := flag.String("action", "license", "Token action: license, revoke, or terminate")
 	flag.Parse()
 
+	
 	if *instanceID == "" {
 		die("-instance is required (get it from GET {SecretPath}/instance)")
 	}
